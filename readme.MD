@@ -1,6 +1,6 @@
 # Trip Planner
 
-This repository is a polished version of the app "Trip Planner" developed along the Codecademy's course "Learn Flask". It serves as my final project for assessement of the module "Introduction to Software Engineering" at CODE University of Applied Sciences. The app can accessed on [Heroku](https://bloodcurdling-scarecrow-55387.herokuapp.com/).
+This repository is a polished version of the app "Trip Planner" developed along the Codecademy's course "Learn Flask". It serves as my final project for assessement of the module "Introduction to Software Engineering" at CODE University of Applied Sciences. The app can accessed on [Heroku](https://marcelot-trip-planner.herokuapp.com/).
 
 ## Every Time You Develop on Your Project
 
