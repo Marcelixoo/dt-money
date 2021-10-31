@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Internal Server Error{% endblock %}
+
+{% block content %}
+    <div class="error">
+    <h1>Internal Server Error</h1>
+    <p>Something blew up.</p>
+    <p><a href="{{ url_for('user.index') }}">Go somewhere nice</a></p>
+    </div>
+{% endblock %}
