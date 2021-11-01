@@ -8,7 +8,7 @@ from app.user.models import User
 blueprint = Blueprint('auth', __name__, template_folder='templates')
 
 
-login_manager.login_view = 'login'
+login_manager.login_view = 'auth.login'
 
 
 @login_manager.user_loader
