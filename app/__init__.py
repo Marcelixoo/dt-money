@@ -1,8 +1,8 @@
 import requests
 from flask import Flask, render_template
 
-from app.auth import auth
-from app.user import user
+from app.auth import views as auth_views
+from app.user import views as user_views
 from app.extensions import db, login_manager
 
 
@@ -26,8 +26,8 @@ def register_extensions(app):
 
 def register_blueprints(app):
     """Register blueprints with the Flask application."""
-    app.register_blueprint(auth)
-    app.register_blueprint(user)
+    app.register_blueprint(auth_views.blueprint)
+    app.register_blueprint(user_views.blueprint)
 
 
 def register_errorhandlers(app):

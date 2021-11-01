@@ -1,10 +1,14 @@
-from flask import render_template, flash, redirect, url_for
+from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user
 from app.extensions import login_manager
-from app.auth import auth
 from app.auth.forms import RegistrationForm, LoginForm
 from app.user.models import User
 
+
+blueprint = Blueprint('auth', __name__, template_folder='templates')
+
+
+login_manager.login_view = 'login'
 
 
 @login_manager.user_loader
@@ -12,7 +16,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-@auth.route('/login', methods=['GET', 'POST'])
+@blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('user.index'))
@@ -27,7 +31,7 @@ def login():
     return render_template('login.html', title='Sign In', form=form)
 
 
-@auth.route('/register', methods=['GET', 'POST'])
+@blueprint.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('auth.login'))
@@ -45,7 +49,7 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-@auth.route('/logout')
+@blueprint.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('auth.login'))

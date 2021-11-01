@@ -1,18 +1,21 @@
-from flask import request, render_template, flash, redirect, url_for, abort
+from flask import request, render_template, flash, redirect, url_for, Blueprint
 from flask_login import current_user, login_required
-from app.user import user
-from app.extensions import db, login_manager
+from app.extensions import db
 from app.user.models import User, Post
 from app.user.forms import DestinationForm
 
+from flask import Blueprint
 
-@user.route('/')
+blueprint = Blueprint('user', __name__, template_folder='templates')
+
+
+@blueprint.route('/')
 def index():
     posts = Post.query.all() or []
     return render_template('index.html', posts=posts)
 
 
-@user.route('/user/<username>', methods=['GET', 'POST'])
+@blueprint.route('/user/<username>', methods=['GET', 'POST'])
 @login_required
 def planner(username):
     if current_user.username != username:

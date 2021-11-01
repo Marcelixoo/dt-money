@@ -1,12 +1,16 @@
 from os import environ
 
-if environ.get('DATABASE_URL'):
-    SQLALCHEMY_DATABASE_URI = (
-        environ.get('DATABASE_URL').replace("://", "ql://", 1))
-else:
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///storage/database.db'
 
+def resolve_db_uri():
+    if environ.get('DATABASE_URL'):
+        return environ.get('DATABASE_URL').replace("://", "ql://", 1)
+    return 'sqlite:///storage/database.db'
+
+
+FLASK_ENV = 'development'
+FLASK_APP = 'run'
 DEBUG = True
 CSRF_ENABLED = False
 SECRET_KEY = 'codecademyisajoke'
+SQLALCHEMY_DATABASE_URI = resolve_db_uri()
 SQLALCHEMY_TRACK_MODIFICATIONS = False
